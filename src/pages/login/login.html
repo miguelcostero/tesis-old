@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Iniciar sesión</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="loginForm" (submit)="loginUser()">
+
+    <!-- Email form input -->
+    <ion-item>
+      <ion-label stacked>Correo electrónico</ion-label>
+      <ion-input #email formControlName="email" type="email" placeholder="ejemplo@ejemplo.com" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty">
+      <p>Porfavor, ingrese una dirección de correo electrónico válida.</p>
+    </ion-item>
+
+    <!-- Password form input -->
+    <ion-item>
+      <ion-label stacked>Contraseña</ion-label>
+      <ion-input #password formControlName="password" type="password" placeholder="Ingrese su contraseña" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty">
+      <p>Su contraseña debe contener al menos 6 caracteres.</p>
+    </ion-item>
+
+    <br>
+    <button ion-button block type="submit">Iniciar sesión</button>
+
+  </form>
+
+  <button ion-button block clear (click)="goToResetPassword()">He olvidado mi contraseña</button>
+</ion-content>
