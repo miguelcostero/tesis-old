@@ -1,10 +1,27 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
     <ion-title>
-      BETA
+      TP Agenda
     </ion-title>
   </ion-navbar>
 </ion-header>
+
+<ion-menu side="left" [content]="mainMenu">
+  <ion-content>
+    <ion-list>
+      <img src="assets/images/default-avatar.png" alt="">
+      <button ion-item (click)="logOut()">
+        Cerrar sesión
+      </button>
+      <ion-item menuClose detail-none>Cerrar menú</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #mainMenu [root]="rootPage"></ion-nav>
 
 <ion-content padding>
   it's working
