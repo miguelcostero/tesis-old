@@ -9,8 +9,7 @@ export class Auth {
   constructor(public af: AngularFire) {
     af.auth.subscribe( user => {
       if (user) {
-        this.fireAuth = user.auth;
-        console.log(user);
+        this.fireAuth = user.auth
       }
     });
   }

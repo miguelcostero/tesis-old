@@ -12,7 +12,12 @@
 <ion-menu side="left" [content]="mainMenu">
   <ion-content>
     <ion-list>
-      <img src="assets/images/default-avatar.png" alt="">
+      <div user-info>
+        <img src="assets/images/default-avatar.png" alt="">
+        <h1>{{ (userData | async)?.firstName + " " + (userData | async)?.lastName }}</h1>
+      </div>
+      
+
       <button ion-item (click)="logOut()">
         Cerrar sesión
       </button>
