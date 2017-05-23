@@ -6,67 +6,77 @@
     <ion-title>
       TP Agenda
     </ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-menu side="left" [content]="mainMenu">
   <ion-content>
-    <ion-list>
-
-  <ion-list-header>
-    Header
-  </ion-list-header>
-
-  <ion-item>
-    Item
-  </ion-item>
-
-  <ion-item detail-push>
-    Item with Detail Arrow
-  </ion-item>
-
-  <button ion-item (click)="buttonClick()">
-    Button Item
-  </button>
-
-  <ion-item-divider>
-    Item Divider
-  </ion-item-divider>
-
-  <button ion-item detail-none (click)="buttonClick()">
-    Button Item with no Detail Arrow
-  </button>
-
-  <a ion-item href="https://www.ionicframework.com">
-    Anchor Item
-  </a>
-
-  <ion-item no-lines>
-    Item with no border
-  </ion-item>
-
-  <ion-item text-wrap>
-    Multiline text that should wrap when it is too long
-    to fit on one line in the item.
-  </ion-item>
-
-</ion-list>
-    <!--<ion-list>
-      <h1>{{ (userData | async)?.firstName + " " + (userData | async)?.lastName }}</h1>
+    <ion-list no-lines>
       
+      <br>
+      <img [src]="(userData | async)?.image || '/assets/images/default-avatar.png'" ion-item profile-photo>
+
+      <h1 ion-item>{{ (userData | async)?.firstName + " " + (userData | async)?.lastName }}</h1>
+
+      <button ion-item (click)="goToProfile()" icon-left>
+        <ion-icon name="person"></ion-icon>
+        Mi perfil
+      </button>
+
       <button ion-item (click)="logOut()" icon-left>
-        <ion-icon name="home"></ion-icon>
+        <ion-icon name="exit"></ion-icon>
         Cerrar sesión
       </button>
-    </ion-list>-->
+
+    </ion-list>
   </ion-content>
 </ion-menu>
 
 <ion-nav #mainMenu [root]="rootPage"></ion-nav>
 
-<ion-content padding>
-  it's working
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-fab right bottom>
+  <button ion-fab color="primary" (click)="createNewEvent()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+</ion-fab>
+
+<ion-content>
+  <ion-searchbar (ionInput)="getEvents($event)" (ionCancel)="onCancelSearchbar($event)"></ion-searchbar>
+
+  <ion-list>
+    <ion-item-sliding #item *ngFor="let event of events">
+
+      <ion-item (click)="goToDetails(event)">
+        <ion-icon name="{{ event.icon }}" item-left></ion-icon>
+        <p class="event_name">{{ event.name }}</p>
+        <p>Creado por <b>{{ event.createdBy.fullName }}</b></p>
+        <p>{{ event.dateAdded | date:'fullDate' }}</p>
+      </ion-item>
+
+      <ion-item-options side="left">
+        <button ion-button color="secondary" (click)="showDates(event)">
+          <ion-icon name="calendar"></ion-icon>
+          Fechas
+        </button>
+      </ion-item-options>
+
+      <ion-item-options side="right">
+        <button ion-button color="warning" (click)="goToEdit(event)">
+          <ion-icon name="create"></ion-icon>
+          Editar
+        </button>
+        <button ion-button color="danger" (click)="showDelete(event)">
+          <ion-icon name="trash"></ion-icon>
+          Eliminar
+        </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

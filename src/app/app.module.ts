@@ -10,6 +10,10 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { Login } from '../pages/login/login';
 import { ResetPassword } from '../pages/reset-password/reset-password';
+import { CreateNewEvent } from '../pages/create-new-event/create-new-event';
+import { EventDetails } from '../pages/event-details/event-details';
+import { EventEdit } from '../pages/event-edit/event-edit';
+import { FilterEventsPopover } from '../components/filter-events-popover/filter-events-popover';
 
 // Import providers
 import { Auth } from '../providers/auth';
@@ -22,7 +26,11 @@ import { authenticationConfig, firebaseConfig } from '../enviroments/firebase.co
     MyApp,
     HomePage,
     Login,
-    ResetPassword
+    ResetPassword,
+    CreateNewEvent,
+    EventDetails,
+    EventEdit,
+    FilterEventsPopover
   ],
   imports: [
     BrowserModule,
@@ -34,7 +42,11 @@ import { authenticationConfig, firebaseConfig } from '../enviroments/firebase.co
     MyApp,
     HomePage,
     Login,
-    ResetPassword
+    ResetPassword,
+    CreateNewEvent,
+    EventDetails,
+    EventEdit,
+    FilterEventsPopover
   ],
   providers: [
     StatusBar,

@@ -1,6 +1,15 @@
 page-home {
-		.list {
-				width: 102.6%;
+	.event_name {
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+        font-weight: 700;
+    }
 
-		}
+    b {
+        font-weight: 500;
+    }
+
+    [profile-photo] {
+        margin-bottom: 20px;
+    }
 }
