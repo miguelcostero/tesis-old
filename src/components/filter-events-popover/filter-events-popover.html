@@ -1,4 +1,7 @@
-<!-- Generated template for the FilterEventsPopover component -->
-<div>
-  {{text}}
-</div>
+<ion-list>
+  <h5>Filtrar eventos</h5>
+  <button ion-item (click)="filterBy('Finalizado')">Finalzados</button>
+  <button ion-item (click)="filterBy('Aprobado')">Aprobados</button>
+  <button ion-item (click)="filterBy('Pendiente')">Pendientes</button>
+  <button ion-item (click)="filterBy('En desarrollo')">En desarrollo</button>
+</ion-list>

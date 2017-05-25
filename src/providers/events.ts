@@ -3,17 +3,21 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2'
 
 @Injectable()
 export class Events {
-  constructor(private db: AngularFireDatabase) {}
+  public events: FirebaseListObservable<any[]>
 
-  getAll(): FirebaseListObservable<any[]> {
-    return this.db.list('/events')
+  constructor(private db: AngularFireDatabase) {
+    this.events = db.list('/events')
   }
 
-  getBy(orderByChild: string, startAt: string): FirebaseListObservable<any[]> {
+  getAll(): FirebaseListObservable<any[]> {
+    return this.events
+  }
+
+  queryByStatus(status: string): FirebaseListObservable<any[]> {
     return this.db.list('/events', {
       query: {
-        orderByChild,
-        startAt
+        orderByChild: 'status',
+        equalTo: status
       }
     })
   }

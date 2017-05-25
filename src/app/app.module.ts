@@ -35,6 +35,7 @@ import { authenticationConfig, firebaseConfig } from '../enviroments/firebase.co
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    //FormsModule,
     AngularFireModule.initializeApp(firebaseConfig, authenticationConfig)
   ],
   bootstrap: [IonicApp],

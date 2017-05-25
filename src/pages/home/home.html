@@ -41,7 +41,7 @@
 <ion-nav #mainMenu [root]="rootPage"></ion-nav>
 
 <ion-fab right bottom>
-  <button ion-fab color="primary" (click)="createNewEvent()">
+  <button ion-fab color="primary" (click)="createNewEvent(userData)">
     <ion-icon name="add"></ion-icon>
   </button>
 </ion-fab>
@@ -78,5 +78,7 @@
       </ion-item-options>
 
     </ion-item-sliding>
+
+    <ion-item *ngIf="events <= 0">No se han encontrado resultados</ion-item>
   </ion-list>
 </ion-content>

@@ -21,7 +21,7 @@ export class HomePage {
   private user
   private userData: FirebaseObjectObservable<any>
   public events: Array<any>
-  private loading: any;
+  private loading: any
 
   constructor(public navCtrl: NavController, public menuCtrl: MenuController, private _auth: Auth, private db: AngularFireDatabase, private _events: Events, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private popoverCtrl: PopoverController) {
     _auth.af.auth.subscribe(user => {
@@ -75,8 +75,11 @@ export class HomePage {
     this.initializeEvents()
   }
 
-  createNewEvent() {
-    this.navCtrl.push(CreateNewEvent)
+  createNewEvent(userData) {
+    this.navCtrl.push(CreateNewEvent, {
+      user: userData,
+      uid: this.user.uid
+    })
   }
 
   goToDetails(event): void {
@@ -124,6 +127,12 @@ export class HomePage {
     let popover = this.popoverCtrl.create(FilterEventsPopover)
     popover.present({
       ev: e
+    })
+
+    popover.onWillDismiss(status => {
+      this._events.queryByStatus(status).subscribe(evento => {
+        this.events = evento
+      })
     })
   }
 }

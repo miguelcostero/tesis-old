@@ -1,12 +1,130 @@
 <ion-header>
-
   <ion-navbar color="primary">
     <ion-title>Crear nuevo evento</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content>
+  <form #newEventForm="ngForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item-group>
+        <ion-item-divider color="warning">Datos básicos</ion-item-divider>
+        <ion-item>
+          <ion-label stacked>Nombre</ion-label>
+          <ion-input type="text" [(ngModel)]="event.name" name="name" required></ion-input>
+        </ion-item>
 
-<ion-content padding>
+        <ion-item>
+          <ion-label stacked>Estado</ion-label>
+          <ion-select [(ngModel)]="event.status" name="status" required>
+            <ion-option value="Aprobado">Aprobado</ion-option>
+            <ion-option value="Finalizado">Finalizado</ion-option>
+            <ion-option value="Pendiente">Pendiente</ion-option>
+            <ion-option value="En desarrollo">En desarrollo</ion-option>
+          </ion-select>
+        </ion-item>
 
+        <ion-item>
+          <ion-label stacked>Icono</ion-label>
+          <ion-select [(ngModel)]="event.icon" name="icon" required>
+            <ion-option value="star">star</ion-option>
+            <ion-option value="american-football">american-football</ion-option>
+            <ion-option value="musical-notes">musical-notes</ion-option>
+            <ion-option value="people">people</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Tipo de evento</ion-label>
+          <ion-input type="text" [(ngModel)]="event.type" name="type" required></ion-input>
+        </ion-item>
+
+      </ion-item-group>
+
+      <ion-item-group>
+        <ion-item-divider color="danger">Cliente</ion-item-divider>
+
+        <ion-item>
+          <ion-label stacked>Documento de identidad</ion-label>
+          <ion-input type="text" [(ngModel)]="event.client.ci" name="ci" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Correo eletrónico</ion-label>
+          <ion-input type="email" [(ngModel)]="event.client.email" name="email" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Nombre</ion-label>
+          <ion-input type="text" [(ngModel)]="event.client.firstName" name="firstName" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Apellido</ion-label>
+          <ion-input type="text" [(ngModel)]="event.client.lastName" name="lastName" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Teléfono</ion-label>
+          <ion-input type="tel" [(ngModel)]="event.client.telephone" name="telephone" required></ion-input>
+        </ion-item>
+      </ion-item-group>
+
+      <ion-item-group>
+        <ion-item-divider color="secondary">Ubicación</ion-item-divider>
+
+        <ion-item>
+          <ion-label stacked>Nombre</ion-label>
+          <ion-input type="text" [(ngModel)]="event.location.name" name="name" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Dirección</ion-label>
+          <ion-input type="text" [(ngModel)]="event.location.address" name="address" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Capacidad (# de espectadores)</ion-label>
+          <ion-input type="number" [(ngModel)]="event.location.capacity" name="capacity" required min="1"></ion-input>
+        </ion-item>
+      </ion-item-group>
+
+      <ion-item-group>
+        <ion-item-divider color="dark">Fecha y hora</ion-item-divider>
+
+        <ion-item>
+          <ion-label stacked>Fecha</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="event.date" name="date" [min]="whatDate"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Hora de comienzo</ion-label>
+          <ion-datetime displayFormat="hh:mm A" pickerFormat="hh mm A" [(ngModel)]="event.time.start" name="start" [min]="whatTime"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Zona horaria</ion-label>
+          <ion-select [(ngModel)]="event.time.timezone" name="timezone" required>
+            <ion-option value="GTM +5:00">GTM +5:00</ion-option>
+            <ion-option value="GTM +4:00">GTM +4:00</ion-option>
+            <ion-option value="GTM +3:00">GTM +3:00</ion-option>
+            <ion-option value="GTM +2:00">GTM +2:00</ion-option>
+            <ion-option value="GTM +1:00">GTM +1:00</ion-option>
+            <ion-option value="GTM 0:00">GTM 0:00</ion-option>
+            <ion-option value="GTM -1:00">GTM -1:00</ion-option>
+            <ion-option value="GTM -2:00">GTM -2:00</ion-option>
+            <ion-option value="GTM -3:00">GTM -3:00</ion-option>
+            <ion-option value="GTM -4:00">GTM -4:00</ion-option>
+            <ion-option value="GTM -5:00">GTM -5:00</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-item-group>
+
+    </ion-list>
+    
+    <div padding>
+      <button ion-button block type="submit" color="primary" [disabled]="!newEventForm.valid">Agregar nuevo evento</button>
+    </div>
+
+  </form>
 </ion-content>
