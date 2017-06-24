@@ -3,8 +3,8 @@ export interface Event {
   status: string;
   icon: string;
   type: string;
-  date: string;
-  dateAdded: number;
+  itinerary: Itinerary[];
+  dateAdded: Date;
   client: {
     ci: string;
     email: string;
@@ -25,4 +25,8 @@ export interface Event {
     fullName: string;
     uid: string;
   };
+}
+
+export class Itinerary {
+  constructor(public description: string, public date: string, public time: string, public timezone: string) {}
 }

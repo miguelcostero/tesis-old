@@ -7,6 +7,40 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-list>
 
+    <ion-item-group>
+      <ion-item-divider color="light">
+        Detalles de evento
+      </ion-item-divider>
+
+      <ion-item>
+        {{ event.name }}
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider color="light">
+        Cliente
+      </ion-item-divider>
+
+      <ion-item>
+        {{ event.client.firstName }} {{ event.client.lastName }}
+      </ion-item>
+
+      <ion-item>
+        {{ event.client.email }}
+      </ion-item>
+
+      <ion-item>
+        {{ event.client.ci }}
+      </ion-item>
+
+      <ion-item>
+        {{ event.client.telephone }}
+      </ion-item>
+    </ion-item-group>
+
+  </ion-list>
 </ion-content>

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Seleccione un tipo de evento
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-fab right bottom>
+  <button ion-fab color="primary" (click)="createNewEventType()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+</ion-fab>
+
+<ion-content>
+  <ion-searchbar (ionInput)="getTypes($event)" (ionCancel)="onCancelSearchbar($event)"></ion-searchbar>
+
+  <ion-list>
+    <ion-item #item *ngFor="let type of types" (click)="selectType(type)">
+      <p>{{ type.name }}</p>
+    </ion-item>
+
+    <ion-item *ngIf="events <= 0">No se han encontrado resultados</ion-item>
+  </ion-list>
+</ion-content>

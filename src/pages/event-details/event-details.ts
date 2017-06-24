@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { Event } from '../../interfaces/Event'
+
 @IonicPage()
 @Component({
   selector: 'page-event-details',
   templateUrl: 'event-details.html',
 })
 export class EventDetails {
+  private event: Event
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log('event', navParams.get('event'))
+    this.event = navParams.get('event')
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EventDetails');
-  }
+  ionViewDidLoad() {}
 
 }

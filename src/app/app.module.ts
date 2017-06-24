@@ -21,6 +21,9 @@ import { Auth } from '../providers/auth';
 // Import configurations
 import { authenticationConfig, firebaseConfig } from '../enviroments/firebase.configuration'
 
+// import modals
+import { EventTypeModal } from '../modals/event-type/event-type-modal'
+
 @NgModule({
   declarations: [
     MyApp,
@@ -30,7 +33,8 @@ import { authenticationConfig, firebaseConfig } from '../enviroments/firebase.co
     CreateNewEvent,
     EventDetails,
     EventEdit,
-    FilterEventsPopover
+    FilterEventsPopover,
+    EventTypeModal
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,8 @@ import { authenticationConfig, firebaseConfig } from '../enviroments/firebase.co
     CreateNewEvent,
     EventDetails,
     EventEdit,
-    FilterEventsPopover
+    FilterEventsPopover,
+    EventTypeModal
   ],
   providers: [
     StatusBar,
