@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
-import { NavController, MenuController, AlertController, LoadingController, PopoverController } from 'ionic-angular'
+import { NavController, MenuController, AlertController, LoadingController, PopoverController, Platform } from 'ionic-angular'
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database'
+import { StatusBar } from '@ionic-native/status-bar'
 
 import { Login } from '../login/login'
 import { CreateNewEvent } from '../create-new-event/create-new-event'
@@ -23,21 +24,32 @@ export class HomePage {
   public events: Array<any>
   private loading: any
 
-  constructor(public navCtrl: NavController, public menuCtrl: MenuController, private _auth: Auth, private db: AngularFireDatabase, private _events: Events, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private popoverCtrl: PopoverController) {
-    _auth.af.auth.subscribe(user => {
+  constructor(private platform: Platform, private statusBar: StatusBar, public navCtrl: NavController, public menuCtrl: MenuController, private _auth: Auth, private db: AngularFireDatabase, private _events: Events, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private popoverCtrl: PopoverController) {
+    platform.ready().then(() => {
+      statusBar.overlaysWebView(true)
+      this.start()
+    })
+  }
+
+  start() {
+    this._auth.af.auth.subscribe(user => {
       if (user) {
         this.user = user.auth
-        this.userData = db.object(`/users/${this.user.uid}`)
+        this.userData = this.db.object(`/users/${this.user.uid}`)
       }
     })
 
-    this.loading = loadingCtrl.create({
+    this.loading = this.loadingCtrl.create({
       dismissOnPageChange: true
     })
 
     this.loading.present()
 
     this.initializeEvents()
+  }
+
+  goToProfile(user) {
+    console.log(user)
   }
 
   logOut() {

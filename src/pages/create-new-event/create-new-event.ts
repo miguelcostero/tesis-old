@@ -45,13 +45,21 @@ export class CreateNewEvent {
 
 	ionViewDidLoad() {}
 
+	deleteItinerary(index) {
+		this.event.itinerary.splice(index, 1)
+		console.log(this.event)
+	}
+
 	initializeEvent() {
+		let beta = new Itinerary("Descripción del evento", this.whatDate, this.whatTime, "GTM +4:00")
 		this.event = {
 			name: "",
 			status: "Pendiente",
 			icon: "star",
 			type: "",
-			itinerary: [],
+			itinerary: [
+				beta
+			],
 			dateAdded: new Date(),
 			client: {
 				ci: "",

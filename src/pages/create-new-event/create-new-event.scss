@@ -1,3 +1,12 @@
 page-create-new-event {
+  [item-end] {
+    float: right;
+  }
 
+  ion-list-header {
+    p {
+      float: left;
+      padding-top: 10px;
+    }
+  }
 }

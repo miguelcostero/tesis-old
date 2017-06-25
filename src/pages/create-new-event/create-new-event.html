@@ -46,36 +46,53 @@
 
 				<ion-item>
 					<ion-label stacked>Documento de identidad</ion-label>
-					<ion-input type="text" [(ngModel)]="event.client.ci" name="ci" required></ion-input>
+					<ion-input type="text" [(ngModel)]="event.client.ci" name="ci" required readonly></ion-input>
 				</ion-item>
 
 				<ion-item>
 					<ion-label stacked>Correo eletrónico</ion-label>
-					<ion-input type="email" [(ngModel)]="event.client.email" name="email" required></ion-input>
+					<ion-input type="email" [(ngModel)]="event.client.email" name="email" required readonly></ion-input>
 				</ion-item>
 
 				<ion-item>
 					<ion-label stacked>Nombre</ion-label>
-					<ion-input type="text" [(ngModel)]="event.client.firstName" name="firstName" required></ion-input>
+					<ion-input type="text" [(ngModel)]="event.client.firstName" name="firstName" required readonly></ion-input>
 				</ion-item>
 
 				<ion-item>
 					<ion-label stacked>Apellido</ion-label>
-					<ion-input type="text" [(ngModel)]="event.client.lastName" name="lastName" required></ion-input>
+					<ion-input type="text" [(ngModel)]="event.client.lastName" name="lastName" required readonly></ion-input>
 				</ion-item>
 
 				<ion-item>
 					<ion-label stacked>Teléfono</ion-label>
-					<ion-input type="tel" [(ngModel)]="event.client.telephone" name="telephone" required></ion-input>
+					<ion-input type="tel" [(ngModel)]="event.client.telephone" name="telephone" required readonly></ion-input>
 				</ion-item>
+
+				<div padding>
+					<a ion-button block icon-right color="danger" (click)="addNewItinerary()">
+						Buscar cliente
+						<ion-icon name="search"></ion-icon>
+					</a>
+				</div>
 			</ion-item-group>
 
-						<ion-item-group>
+			<ion-item-group>
 				<ion-item-divider color="dark">Cronograma</ion-item-divider>
 
 				<ion-list>
 					<ion-item-group *ngFor="let item of event.itinerary; let i = index" [attr.data-index]="i">
-						<ion-item-divider color="light">Evento {{ i + 1 }}</ion-item-divider>
+						<ion-list-header color="evento">
+							<p>Evento {{ i + 1 }}</p>
+
+							<button ion-button outline item-end (click)="deleteItinerary(i)" icon-right>
+								Eliminar
+								<ion-icon name="trash"></ion-icon>							
+							</button>
+						</ion-list-header>
+						<!--<ion-item-divider color="evento">
+							
+						</ion-item-divider>-->
 						<ion-item>
 							<ion-label stacked>Descripción</ion-label>
 							<ion-input type="text" [(ngModel)]="item.description" name="itineraryDescription{{i}}" required></ion-input>
@@ -107,12 +124,14 @@
 								<ion-option value="GTM -5:00">GTM -5:00</ion-option>
 							</ion-select>
 						</ion-item>
-						<br>
 					</ion-item-group>
 				</ion-list>
 
 				<div padding>
-					<a ion-button block (click)="addNewItinerary()">Agregar nuevo evento al cronograma</a>
+					<a ion-button block color="dark" icon-right (click)="addNewItinerary()">
+						Agregar evento
+						<ion-icon name="add"></ion-icon>
+					</a>
 				</div>
 			</ion-item-group>
 
