@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Clientes
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-fab right bottom>
+  <button ion-fab color="primary" (click)="createNewClient()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+</ion-fab>
+
+<ion-content>
+  <ion-searchbar (ionInput)="getClients($event)" (ionCancel)="onCancelSearchbar($event)"></ion-searchbar>
+
+  <ion-list>
+    <ion-item #item *ngFor="let client of clients" (click)="selectClient(client)">
+      <h2>{{ client.firstName }} {{ client.lastName }}</h2>
+      <h3>{{ client.email }}</h3>
+      <h3>{{ client.phone }}</h3>
+    </ion-item>
+
+    <ion-item *ngIf="clients <= 0">No se han encontrado resultados</ion-item>
+  </ion-list>
+</ion-content>

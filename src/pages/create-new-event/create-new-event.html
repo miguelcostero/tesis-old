@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-	<form #newEventForm="ngForm" (ngSubmit)="onSubmit()">
+	<form #newEventForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
 		<ion-list>
 			<ion-item-group>
 				<ion-item-divider color="warning">Datos básicos</ion-item-divider>
@@ -46,7 +46,7 @@
 
 				<ion-item>
 					<ion-label stacked>Documento de identidad</ion-label>
-					<ion-input type="text" [(ngModel)]="event.client.ci" name="ci" required readonly></ion-input>
+					<ion-input type="text" [(ngModel)]="event.client.cedula" name="cedula" required readonly></ion-input>
 				</ion-item>
 
 				<ion-item>
@@ -66,11 +66,11 @@
 
 				<ion-item>
 					<ion-label stacked>Teléfono</ion-label>
-					<ion-input type="tel" [(ngModel)]="event.client.telephone" name="telephone" required readonly></ion-input>
+					<ion-input type="tel" [(ngModel)]="event.client.phone" name="phone" required readonly></ion-input>
 				</ion-item>
 
 				<div padding>
-					<a ion-button block icon-right color="danger" (click)="addNewItinerary()">
+					<a ion-button block icon-right color="danger" (click)="presentClientsModal(event.client)">
 						Buscar cliente
 						<ion-icon name="search"></ion-icon>
 					</a>
@@ -90,9 +90,7 @@
 								<ion-icon name="trash"></ion-icon>							
 							</button>
 						</ion-list-header>
-						<!--<ion-item-divider color="evento">
-							
-						</ion-item-divider>-->
+
 						<ion-item>
 							<ion-label stacked>Descripción</ion-label>
 							<ion-input type="text" [(ngModel)]="item.description" name="itineraryDescription{{i}}" required></ion-input>

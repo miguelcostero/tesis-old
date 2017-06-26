@@ -5,10 +5,13 @@ import { IonicPage, NavController, NavParams, AlertController, ModalController }
 import { Events } from '../../providers/events'
 
 // import interfaces
-import { Event, Itinerary } from '../../interfaces/Events'
+import { Event } from '../../interfaces/Events'
+import { Itinerary } from '../../interfaces/Itinerary'
+import { Client } from '../../interfaces/Client'
 
 // import modals
 import { EventTypeModal } from '../../modals/event-type/event-type-modal'
+import { ClientsModal } from '../../modals/clients/clients-modal'
 
 @IonicPage()
 @Component({
@@ -24,15 +27,15 @@ export class CreateNewEvent {
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private _events: Events, private alertCtrl: AlertController, public modalCtrl: ModalController) {
 		this.initializeEvent()
-		navParams.data.user.subscribe(user => {
+		this.navParams.data.user.subscribe(user => {
 			this.event.createdBy.fullName = `${user.firstName} ${user.lastName}`
-			this.event.createdBy.uid = navParams.data.uid
+			this.event.createdBy.uid = this.navParams.data.uid
 		})
 		this.itinerary = new Itinerary("Descripción del evento", this.whatDate, this.whatTime, "GTM +4:00")
 	}
 
 	onSubmit() {
-		this._events.getAll().push(this.event)
+		this.event ? this._events.getAll().push(this.event) : console.error('ERROR')
 		this.initializeEvent()
 		let alert = this.alertCtrl.create({
 			title: "Nuevo evento agregado",
@@ -62,11 +65,11 @@ export class CreateNewEvent {
 			],
 			dateAdded: new Date(),
 			client: {
-				ci: "",
+				cedula: "",
 				email: "",
 				firstName: "",
 				lastName: "",
-				telephone: ""
+				phone: ""
 			},
 			location: {
 				name: "",
@@ -86,10 +89,17 @@ export class CreateNewEvent {
 
 	presentEventTypeModal(type: string = '') {
 		let modal = this.modalCtrl.create(EventTypeModal, { type })
-
 		modal.present()
 		modal.onDidDismiss(type => {
 			this.event.type = type.name
+		})
+	}
+
+	presentClientsModal(client: Client) {
+		let modal = this.modalCtrl.create(ClientsModal, client)
+		modal.present()
+		modal.onDidDismiss(client => {
+			this.event.client = client
 		})
 	}
 

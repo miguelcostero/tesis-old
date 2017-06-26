@@ -1,3 +1,6 @@
+import { Client } from './Client'
+import { Itinerary } from './Itinerary'
+
 export interface Event {
   name: string;
   status: string;
@@ -5,13 +8,7 @@ export interface Event {
   type: string;
   itinerary: Itinerary[];
   dateAdded: Date;
-  client: {
-    ci: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-    telephone: string;
-  };
+  client: Client;
   location: {
     name: string;
     address: string;
@@ -25,8 +22,4 @@ export interface Event {
     fullName: string;
     uid: string;
   };
-}
-
-export class Itinerary {
-  constructor(public description: string, public date: string, public time: string, public timezone: string) {}
 }
