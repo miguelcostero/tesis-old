@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen'
 import { StatusBar } from '@ionic-native/status-bar'
 import { AngularFireModule } from 'angularfire2'
 import { Push } from '@ionic-native/push'
+import { LocalNotifications } from '@ionic-native/local-notifications'
 
 // Import components
 import { MyApp } from './app.component'
@@ -63,7 +64,8 @@ import { ClientsModal } from '../modals/clients/clients-modal'
     SplashScreen,
     Auth,
     Push,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    LocalNotifications
   ]
 })
 export class AppModule {}
