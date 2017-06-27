@@ -7,16 +7,12 @@ export interface Event {
   icon: string;
   type: string;
   itinerary: Itinerary[];
-  dateAdded: Date;
+  dateAdded: string;
   client: Client;
   location: {
     name: string;
     address: string;
     capacity: number;
-  };
-  time: {
-    start: string;
-    timezone: string;
   };
   createdBy: {
     fullName: string;

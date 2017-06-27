@@ -6,6 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar'
 import { AngularFireModule } from 'angularfire2'
 import { Push } from '@ionic-native/push'
 import { LocalNotifications } from '@ionic-native/local-notifications'
+import { FormsModule } from '@angular/forms'
+import { CustomFormsModule } from 'ng2-validation'
 
 // Import components
 import { MyApp } from './app.component'
@@ -43,7 +45,8 @@ import { ClientsModal } from '../modals/clients/clients-modal'
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    //FormsModule,
+    FormsModule,
+    CustomFormsModule,
     AngularFireModule.initializeApp(firebaseConfig, authenticationConfig)
   ],
   bootstrap: [IonicApp],

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular'
+import * as moment from 'moment'
 
 // import providers
 import { Events } from '../../providers/events'
@@ -50,11 +51,10 @@ export class CreateNewEvent {
 
 	deleteItinerary(index) {
 		this.event.itinerary.splice(index, 1)
-		console.log(this.event)
 	}
 
 	initializeEvent() {
-		let beta = new Itinerary("Descripción del evento", this.whatDate, this.whatTime, "GTM +4:00")
+		let beta = new Itinerary("", this.whatDate, this.whatTime, "GTM +4:00")
 		this.event = {
 			name: "",
 			status: "Pendiente",
@@ -63,7 +63,7 @@ export class CreateNewEvent {
 			itinerary: [
 				beta
 			],
-			dateAdded: new Date(),
+			dateAdded: moment().format(),
 			client: {
 				cedula: "",
 				email: "",
@@ -75,10 +75,6 @@ export class CreateNewEvent {
 				name: "",
 				address: "",
 				capacity: 0
-			},
-			time: {
-				start: "",
-				timezone: ""
 			},
 			createdBy: {
 				fullName: "",
@@ -99,7 +95,13 @@ export class CreateNewEvent {
 		let modal = this.modalCtrl.create(ClientsModal, client)
 		modal.present()
 		modal.onDidDismiss(client => {
-			this.event.client = client
+			this.event.client = {
+				cedula: client.cedula,
+				email: client.email,
+				firstName: client.firstName,
+				lastName: client.lastName,
+				phone: client.phone
+			}
 		})
 	}
 

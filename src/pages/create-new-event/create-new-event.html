@@ -93,7 +93,7 @@
 
 						<ion-item>
 							<ion-label stacked>Descripción</ion-label>
-							<ion-input type="text" [(ngModel)]="item.description" name="itineraryDescription{{i}}" required></ion-input>
+							<ion-input type="text" [(ngModel)]="item.description" name="itineraryDescription{{i}}" placeholder="Descripción del evento" required></ion-input>
 						</ion-item>
 
 						<ion-item>
@@ -147,15 +147,15 @@
 				</ion-item>
 
 				<ion-item>
-					<ion-label stacked>Capacidad (# de espectadores)</ion-label>
-					<ion-input type="number" [(ngModel)]="event.location.capacity" name="capacity" required min="1"></ion-input>
+					<ion-label stacked>Número de invitados (Espectadores)</ion-label>
+					<ion-input type="number" [(ngModel)]="event.location.capacity" name="capacity" required min="10"></ion-input>
 				</ion-item>
 			</ion-item-group>
 
 		</ion-list>
 		
 		<div padding>
-			<button ion-button block type="button" color="primary" [disabled]="!newEventForm.valid">Agregar nuevo evento</button>
+			<button ion-button block type="submit" color="primary" [disabled]="newEventForm.invalid">Agregar nuevo evento</button>
 		</div>
 
 	</form>
