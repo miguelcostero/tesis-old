@@ -6,6 +6,7 @@
 
 <ion-content>
 	<form #newEventForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+		
 		<ion-list>
 			<ion-item-group>
 				<ion-item-divider color="warning">Datos básicos</ion-item-divider>
@@ -34,10 +35,17 @@
 					</ion-select>
 				</ion-item>
 
-				<ion-item (click)="presentEventTypeModal(event.type)">
+				<ion-item>
 					<ion-label stacked>Tipo de evento</ion-label>
 					<ion-input type="text" [(ngModel)]="event.type" name="type" required readonly></ion-input>
 				</ion-item>
+
+				<div padding>
+					<button ion-button outline block color="warning" (click)="presentEventTypeModal(event.type)" icon-right type="button">
+						seleccionar tipo de evento
+						<ion-icon name="search"></ion-icon>							
+					</button>
+				</div>
 
 			</ion-item-group>
 
@@ -70,7 +78,7 @@
 				</ion-item>
 
 				<div padding>
-					<a ion-button block icon-right color="danger" (click)="presentClientsModal(event.client)">
+					<a ion-button block outline icon-right color="danger" (click)="presentClientsModal(event.client)">
 						Buscar cliente
 						<ion-icon name="search"></ion-icon>
 					</a>
@@ -85,7 +93,7 @@
 						<ion-list-header color="evento">
 							<p>Evento {{ i + 1 }}</p>
 
-							<button ion-button outline item-end (click)="deleteItinerary(i)" icon-right>
+							<button ion-button outline item-end (click)="deleteItinerary(i)" icon-right type="button" color="light">
 								Eliminar
 								<ion-icon name="trash"></ion-icon>							
 							</button>
@@ -103,7 +111,7 @@
 
 						<ion-item>
 							<ion-label stacked>Hora de comienzo</ion-label>
-							<ion-datetime displayFormat="hh:mm A" pickerFormat="hh mm A" [(ngModel)]="item.time" name="itineraryTime{{i}}" [min]="whatTime"></ion-datetime>
+							<ion-datetime displayFormat="hh:mm A" pickerFormat="hh mm A" [(ngModel)]="item.time" name="itineraryTime{{i}}"></ion-datetime>
 						</ion-item>
 
 						<ion-item>
@@ -126,7 +134,7 @@
 				</ion-list>
 
 				<div padding>
-					<a ion-button block color="dark" icon-right (click)="addNewItinerary()">
+					<a ion-button block color="dark" outline icon-right (click)="addNewItinerary()">
 						Agregar evento
 						<ion-icon name="add"></ion-icon>
 					</a>

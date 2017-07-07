@@ -6,8 +6,9 @@ import { StatusBar } from '@ionic-native/status-bar'
 import { AngularFireModule } from 'angularfire2'
 import { Push } from '@ionic-native/push'
 import { LocalNotifications } from '@ionic-native/local-notifications'
+import { HeaderColor } from '@ionic-native/header-color'
+import { Camera } from '@ionic-native/camera'
 import { FormsModule } from '@angular/forms'
-import { CustomFormsModule } from 'ng2-validation'
 
 // Import components
 import { MyApp } from './app.component'
@@ -46,7 +47,6 @@ import { ClientsModal } from '../modals/clients/clients-modal'
     BrowserModule,
     IonicModule.forRoot(MyApp),
     FormsModule,
-    CustomFormsModule,
     AngularFireModule.initializeApp(firebaseConfig, authenticationConfig)
   ],
   bootstrap: [IonicApp],
@@ -67,6 +67,8 @@ import { ClientsModal } from '../modals/clients/clients-modal'
     SplashScreen,
     Auth,
     Push,
+    HeaderColor,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocalNotifications
   ]

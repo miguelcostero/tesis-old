@@ -50,11 +50,37 @@ export class CreateNewEvent {
 	ionViewDidLoad() {}
 
 	deleteItinerary(index) {
-		this.event.itinerary.splice(index, 1)
+		if (this.event.itinerary.length < 2) {
+			let alert = this.alertCtrl.create({
+				title: 'El cronograma debe tener como mímino un evento',
+				buttons: [ 'OK' ]
+			})
+			alert.present()
+		} else {
+			let confirm = this.alertCtrl.create({
+				title: '¿Está seguro que desea eliminar este evento?',
+				message: 'Si acepta, este evento no podrá ser recuperado.',
+				buttons: [
+					{
+						text: 'Cancelar',
+						handler: () => {
+							console.log('no deleted')
+						}
+					},
+					{
+						text: 'Eliminar',
+						handler: () => {
+							this.event.itinerary.splice(index, 1)
+						}
+					}
+				]
+			})
+			confirm.present()
+		} 
 	}
 
 	initializeEvent() {
-		let beta = new Itinerary("", this.whatDate, this.whatTime, "GTM +4:00")
+		let beta = new Itinerary("", moment().format(), moment().format(), "GTM +4:00")
 		this.event = {
 			name: "",
 			status: "Pendiente",
@@ -74,7 +100,7 @@ export class CreateNewEvent {
 			location: {
 				name: "",
 				address: "",
-				capacity: 0
+				capacity: 10
 			},
 			createdBy: {
 				fullName: "",
@@ -106,6 +132,7 @@ export class CreateNewEvent {
 	}
 
 	addNewItinerary() {
-		this.event.itinerary.push(new Itinerary("Descripción del evento", this.whatDate, this.whatTime, "GTM +4:00"))
+		let lastItenary = this.event.itinerary[this.event.itinerary.length - 1]
+		this.event.itinerary.push(new Itinerary("", lastItenary.time, lastItenary.date, lastItenary.timezone))
 	}
 }

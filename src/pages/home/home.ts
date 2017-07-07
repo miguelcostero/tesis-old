@@ -58,8 +58,8 @@ export class HomePage {
   }
 
   initializeEvents() {
-    this._events.getAll().subscribe(evento => {
-      this.events = evento
+    this._events.getAll().subscribe(eventos => {
+      this.events = eventos
       this.loading.dismiss()
     })
   }
@@ -116,7 +116,7 @@ export class HomePage {
         {
           text: 'Aceptar',
           handler: () => {
-            console.log('deleted')
+            this.db.object(`/events/${event.$key}`).remove()
           }
         }
       ]

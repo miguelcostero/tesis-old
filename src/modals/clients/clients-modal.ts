@@ -65,8 +65,8 @@ export class ClientsModal {
 
 	createNewClient() {
 		let prompt = this.alertCtrl.create({
-			title: 'Crear nuevo tipo de evento',
-			message: "Ingrese el nombre de su nuevo tipo de evento",
+			title: 'Agregar nuevo cliente',
+			message: 'Agregue un nuevo cliente a la plataforma.',
 			inputs: [
 				{
 					name: 'clientCedula',
